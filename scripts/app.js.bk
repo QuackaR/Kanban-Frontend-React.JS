@@ -1,0 +1,82 @@
+var data = [
+    {id: 1, name: "Task 1", description: "This is one task", dueDate: "31.12.2016", status: "Backlog"},
+    {id: 2, name: "Task 2", description: "This is another task", dueDate: "31.11.2016", status: "ToDo"},
+    {id: 3, name: "Task 3", description: "This is task three", dueDate: "31.10.2016", status: "Progress"},
+    {id: 4, name: "Task 4", description: "This is a fourth task", dueDate: "31.09.2016", status: "Waiting"},
+    {id: 5, name: "Task 5", description: "This is the fifth task", dueDate: "31.08.2016", status: "Done"},
+    {id: 6, name: "Task 6", description: "This is task number six", dueDate: "31.09.2016", status: "Backlog"},
+    {id: 7, name: "Task 7", description: "Arent seven tasks too much", dueDate: "31.09.2016", status: "ToDo"},
+    {id: 8, name: "Task 8", description: "Or even eight", dueDate: "31.09.2016", status: "Progress"},
+    {id: 9, name: "Task 9", description: "Doesnt matter, heres a ninth", dueDate: "31.09.2016", status: "Waiting"},
+
+];
+
+var Kanban = React.createClass({
+    render: function() {
+        return (
+            <div className="kanbanWebApp">
+                <h1>Kanban-Board</h1>
+                <KanbanBoard data={this.props.data} />
+            </div>
+        );
+    }
+});
+
+var KanbanBoard = React.createClass({
+    render: function() {
+        return (
+            <div className="kanbanBoard">
+                <KanbanLane data={this.props.data} status="Backlog" />
+                <KanbanLane data={this.props.data} status="ToDo" />
+                <KanbanLane data={this.props.data} status="Progress" />
+                <KanbanLane data={this.props.data} status="Waiting" />
+                <KanbanLane data={this.props.data} status="Done" />
+            </div>
+        );
+    }
+});
+
+var KanbanLane = React.createClass({
+    render: function () {
+        return (
+            <div className="kanbanLane">
+                <h2>{this.props.status}</h2>
+                <KanbanTasks data={this.props.data} status={this.props.status} />
+            </div>
+        );
+    }
+})
+
+var KanbanTasks = React.createClass({
+    render: function() {
+        var tasks = this.props.data.map(function(task) {
+            if(task.status == this.props.status) {
+                return (
+                    <KanbanTask key={task.id} name={task.name} description={task.description} dueDate={task.dueDate} status={task.status} />
+                );
+            }
+        }, this);
+        return (
+            <div>
+                {tasks}
+            </div>
+        );
+    }
+});
+
+var KanbanTask = React.createClass({
+    render: function() {
+        return (
+            <div className="kanbanTask">
+                <p>Name: {this.props.name}</p>
+                <p>Description: {this.props.description}</p>
+                <p>Due Date: {this.props.dueDate}</p>
+            </div>
+        );
+    }
+});
+
+ReactDOM.render(
+    <Kanban data={data} />,
+    document.getElementById('content')
+);
