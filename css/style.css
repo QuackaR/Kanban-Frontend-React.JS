@@ -1,0 +1,28 @@
+.kanbanWebApp {
+
+}
+
+.kanbanBoard {
+
+}
+
+.kanbanLane {
+    float:left;
+    width: 20%;
+    background: #AAAAAA;
+}
+
+.kanbanTask {
+    background: #DDDDDD;
+    padding: 10px;
+}
+
+.kanbanTask .label {
+    float:left;
+    width: 30%;
+    font-weight: bold;
+}
+
+.kanbanTask .value {
+    width: 70%;
+}

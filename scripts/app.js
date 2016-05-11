@@ -47,12 +47,12 @@ var KanbanLane = React.createClass({
     render: function () {
         return (
             <div className="kanbanLane">
-                <h2>{this.props.status}</h2>
+                <center><h2>{this.props.status}</h2></center>
                 <KanbanTasks data={this.props.data} status={this.props.status} />
             </div>
         );
     }
-})
+});
 
 var KanbanTasks = React.createClass({
     render: function() {
@@ -74,10 +74,13 @@ var KanbanTasks = React.createClass({
 var KanbanTask = React.createClass({
     render: function() {
         return (
-            <div className="kanbanTask">
-                <p>Name: {this.props.name}</p>
-                <p>Description: {this.props.description}</p>
-                <p>Due Date: {this.props.dueDate}</p>
+            <div className="kanbanTask" class="kanbanTask">
+                <div className="label">Name:</div>
+                <div className="value">{this.props.name}</div>
+                <div className="label">Description:</div>
+                <div className="value">{this.props.description}</div>
+                <div className="label">Due Date:</div>
+                <div className="value">{this.props.dueDate}</div>
             </div>
         );
     }
